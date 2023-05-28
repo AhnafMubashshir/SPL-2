@@ -1,0 +1,48 @@
+.login-container {
+    display: flex;
+    width: 500px;
+    align-items: center;
+  }
+  
+  .form-container {
+    width: 100%;
+    border-radius: 10px;
+    padding: 40px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add box shadow */
+  }
+  
+  .form-container h3 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+  
+  .error-message {
+    font-size: 18px;
+    margin-bottom: 24px;
+    text-align: center;
+    color: red;
+  }
+  
+  .register-link {
+    text-align: center;
+    margin-top: 24px;
+  }
+  
+  .register-link a {
+    font-size: 18px;
+    color: #1890ff;
+  }
+  
+  .login-form-button {
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  @media screen and (max-width: 480px) {
+    .form-container {
+      width: 100%;
+    }
+  }
+  

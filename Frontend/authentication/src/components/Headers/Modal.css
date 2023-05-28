@@ -1,0 +1,9 @@
+.custom-modal .ant-modal-content {
+    background-color: #F1F2F4 !important; /* replace #yourColor with your desired color */
+  }
+
+  .custom-modal .ant-modal-header {
+    text-align: center;
+    background-color: #F1F2F4 !important; /* replace #yourColor with your desired color */
+  }
+  

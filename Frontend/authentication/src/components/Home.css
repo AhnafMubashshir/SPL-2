@@ -1,0 +1,197 @@
+.homepage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    padding: 20px;
+}
+
+header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+main {
+    flex-basis: 100%;
+}
+
+.post {
+    align-items: flex-start;
+    /* align items to the left side */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+    /* make the width 100% so that it takes the full width of the container */
+    cursor: pointer;
+}
+
+
+.post-info {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    margin-top: 10px;
+    height: auto;
+}
+
+
+
+.post-info h2 {
+    font-size: 1.8rem;
+    margin: 0;
+    font-weight: bold;
+    color: #1d2129;
+    text-align: left;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+
+.post-info p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #333;
+    line-height: 1.5;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+
+.post-actions {
+    display: flex;
+    align-items: center;
+}
+
+.post-actions button {
+    background-color: #fff;
+    border: none;
+    border-radius: 4px;
+    color: #333;
+    font-size: 1rem;
+    margin-right: 10px;
+    padding: 8px 12px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.post-actions button:hover {
+    cursor: pointer;
+    background-color: #00627c;
+    color: #fff;
+}
+
+.like-btn {
+    margin-left: auto;
+}
+
+.comment-btn {
+    flex: 1;
+    display: flex;
+    color: black;
+    justify-content: center;
+}
+
+.share-btn {
+    margin-right: auto;
+}
+
+.post-actions button:hover {
+    cursor: pointer;
+    background-color: #f2f2f2;
+}
+
+.settings-container {
+    position: relative;
+}
+
+.offcanvas {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+.offcanvas.open {
+    transform: translateX(0);
+}
+
+.offcanvas-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.offcanvas-header h3 {
+    margin: 0;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    color: #000;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.offcanvas-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.offcanvas-menu li {
+    margin-bottom: 10px;
+}
+
+.offcanvas-menu a {
+    color: #000;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.offcanvas-menu a:hover {
+    text-decoration: underline;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.settings-button {
+    margin-left: auto;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.liked {
+    background-color: deeppink;
+    color: white;
+}
+
+.post-uid{
+    display: flex;
+}
