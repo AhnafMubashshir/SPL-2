@@ -15,18 +15,20 @@ const BaseScoreCalculationUsingDescription = () => {
     const navigate = useNavigate('');
     const [vulnerability, setVulnerability] = useState();
     const [reportButton, setReportButton] = useState(false);
+    const [rloading, setRLoading] = useState(false);
 
     const handleDescriptionChange = (e) => {
         setDescription(e.target.value);
     };
 
     const handleCalculateBaseScore = async () => {
+        console.log(description);
         try {
             await form.validateFields();
 
             setLoading(true);
 
-            const response = await axios.post('http://192.168.22.61:5000/calculate_score_using_description', {
+            const response = await axios.post('http://10.100.101.160:5000/calculate_score_using_description', {
                 Description: description,
             });
 
@@ -48,11 +50,13 @@ const BaseScoreCalculationUsingDescription = () => {
     };
 
     const handleVReport = () => {
+        setRLoading(true);
         if (params.userType === 'AU') {
             navigate(`/admin/${params.userType}/${params.uID}/CVSSReport`, { state: { vulnerability } });
         } else if (params.userType === 'GU') {
             navigate(`/user/${params.userType}/${params.uID}/CVSSReport`, { state: { vulnerability } });
         }
+        setRLoading(false);
     };
 
     const getSeverityColor = (severity) => {
@@ -75,8 +79,8 @@ const BaseScoreCalculationUsingDescription = () => {
     return (
         <div>
             <div>
-                <h2 style={{ color: '#192841', marginBottom: 15 }}>CVSS Score Calculator</h2>
-                <p style={{ marginBottom: 15 }}>
+                <h2 style={{ color: '#192841', marginBottom: 20 }}>CVSS Score Calculator: From Description</h2>
+                <p style={{ marginBottom: 50 }}>
                     Please provide a description of the vulnerability on your system. This calculator will evaluate the severity
                     of the vulnerability based on standardized base metrics. Once you have provided the description, click the
                     "Calculate Base Score" button to obtain the base severity score.
@@ -96,7 +100,7 @@ const BaseScoreCalculationUsingDescription = () => {
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: 20 }}>
-                <Button type="primary" loading={loading} htmlType="submit" style={{ background: '#276221', marginBottom: 20, width: 180 }}>
+                <Button type="primary" loading={loading} onClick={handleCalculateBaseScore} htmlType="submit" style={{ background: '#276221', marginBottom: 20, width: 180 }}>
                     Calculate Base Score
                 </Button>
 
@@ -114,7 +118,7 @@ const BaseScoreCalculationUsingDescription = () => {
                 )}
 
                 {reportButton && (
-                    <Button type="primary" loading={loading} onClick={handleVReport} style={{ background: '#276221', width: 180 }}>
+                    <Button type="primary" loading={rloading} onClick={handleVReport} style={{ background: '#276221', width: 180 }}>
                         Testing Report
                     </Button>
                 )}

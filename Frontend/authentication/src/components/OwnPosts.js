@@ -321,9 +321,9 @@ const OwnPosts = () => {
                         </main>
                     )
                 }
-
-                <div style={{ marginBottom: '60px' }} />
             </div>
+            
+            <div style={{ marginBottom: '60px' }} />
 
             <Modal
                 open={open}

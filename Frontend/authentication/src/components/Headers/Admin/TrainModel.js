@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { InboxOutlined, RightCircleFilled } from '@ant-design/icons'
+import { CheckCircleTwoTone, ExclamationCircleTwoTone, InboxOutlined } from '@ant-design/icons'
 import { Button, message, Modal, Upload } from 'antd';
 import axios from 'axios';
 import AuthService from '../../AuthService';
@@ -11,7 +11,8 @@ const TrainModel = () => {
   const [loading, setLoading] = useState(false);
   const [sMessage, setSMessage] = useState();
   const [successModal, setSuccessModal] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(null)
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [errorModal, setErrorModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,21 +53,31 @@ const TrainModel = () => {
     let data = require(`${path}`);
     console.log(path);
 
-    const response = await axios.post('http://10.100.101.160:5000/training_data', {
-      data: data,
-      file_name: fileName
-    });
+    try {
+      const response = await axios.post('http://10.100.101.160:5000/training_data', {
+        data: data,
+        file_name: fileName
+      });
 
-    console.log(response.data.message);
-    setSMessage(response.data.message);
-
-    setLoading(false);
-
-    setSuccessModal(true);
+      console.log(response.data.message);
+      setSMessage(response.data.message);
+      setSuccessModal(true);
+    } catch (error) {
+      console.error(error);
+      setSMessage('An error occurred during the request.');
+      setErrorModal(true);
+    } finally {
+      setLoading(false);
+    }
   };
+
 
   function handleSuccessCancel() {
     setSuccessModal(false);
+  }
+
+  function handleErrorModalCancel() {
+    setErrorModal(false)
   }
 
   if (isAuthenticated === null) {
@@ -89,9 +100,8 @@ const TrainModel = () => {
       >
         <h2 style={{ color: '192841', marginBottom: 15 }}>Train Your Model</h2>
         <p>
-          Please provide a description of the vulnerability on your system. This calculator will evaluate the severity
-          of the vulnerability based on standardized base metrics. Once you have provided the description, click the
-          "Calculate Base Score" button to obtain the base severity score.
+          The Admin will collect newly published vulnerability from NVD(National vulnerability Database) in JSON format and upload here.
+          This JSON file will be converted into a CSV file which will be used to trained 8 BERT model for 8 base metrics. 
         </p>
       </div>
 
@@ -120,7 +130,17 @@ const TrainModel = () => {
         onCancel={handleSuccessCancel}
         okButtonProps={{ style: { background: '#192841' } }}
       >
-        <p><RightCircleFilled /> {sMessage}</p>
+        <p><CheckCircleTwoTone /> {sMessage}</p>
+      </Modal>
+
+      <Modal
+        visible={errorModal}
+        onCancel={handleErrorModalCancel}
+        onOk={handleErrorModalCancel}
+        title="Training Error"
+        okButtonProps={{ style: { background: '#192841' } }}
+      >
+        <p><ExclamationCircleTwoTone /> {sMessage}</p>
       </Modal>
     </div>
   );

@@ -89,7 +89,7 @@ const BaseScoreUsingQA = () => {
                 return;
             }
         }
-        const response = await axios.post('http://192.168.22.61:5000/calculate_score_using_QA', {
+        const response = await axios.post('http://10.100.101.160:5000/calculate_score_using_QA', {
             q1: values.q1,
             q2: values.q2,
             q3: values.q3,
@@ -151,11 +151,11 @@ const BaseScoreUsingQA = () => {
     return (
         <div>
             <div>
-                <h2 style={{ color: '#192841', marginBottom: 15, marginRight: 100, marginLeft: 35 }}>CVSS Score Calculator</h2>
-                <p style={{ color: '#192841', marginBottom: 15, marginRight: 80, marginLeft: 35 }}>
-                    Please provide a description of the vulnerability on your system. This calculator will evaluate the severity
-                    of the vulnerability based on standardized base metrics. Once you have provided the description, click the
-                    "Calculate Base Score" button to obtain the base severity score.
+                <h2 style={{ color: '#192841', marginBottom: 15, marginRight: 100, marginLeft: 35 }}>CVSS Score Calculator: Q/A </h2>
+                <p style={{ color: '#192841', marginBottom: 45, marginRight: 80, marginLeft: 35 }}>
+                    When cyber security professionals rates a vulnerability they consider some special cases and assign values to 
+                    the 8 base metrics. Here we have genarated 14 vulnerability realted questions whose asnwer's combinations will be 
+                    mapped into those 8 base metrics and later used to calculate the CVSS score.  
                 </p>
             </div>
             <Row style={{ marginBottom: 100, marginTop: 20, marginLeft: 30 }}>
@@ -183,17 +183,17 @@ const BaseScoreUsingQA = () => {
                     </Form>
                 </Col>
                 <Col span={8}>
-                    <div style={{ position: 'fixed', right: 30, width: 200, height: 200, marginRight: '5%', marginTop: '5%' }}>
+                    <div style={{ position: 'fixed', right: 30, width: 200, height: 200, marginRight: '5%', marginTop: '1%' }}>
                         <Card title="CVSS Score" bordered={false} style={{ width: '100%', height: '100%', background: getSeverityColor(severity) }}>
                             <h3 style={{ color: 'white' }}>{score}</h3>
                         </Card>
                     </div>
-                    <div style={{ position: 'fixed', right: 30, width: 200, height: 200, marginRight: '5%', marginTop: '20%' }}>
+                    <div style={{ position: 'fixed', right: 30, width: 200, height: 200, marginRight: '5%', marginTop: '14%' }}>
                         <Card title="Severity" bordered={false} style={{ width: '100%', height: '100%', background: getSeverityColor(severity) }}>
                             <h3 style={{ color: 'white' }}>{severity}</h3>
                         </Card>
                     </div>
-                    <div style={{ position: 'fixed', right: 30, width: 200, height: 200, marginRight: '5%', marginTop: '34%' }}>
+                    <div style={{ position: 'fixed', right: 30, width: 200, height: 200, marginRight: '4.5%', marginTop: '27%' }}>
                         {
                             vulnerability &&
                             <Button
